@@ -1,0 +1,53 @@
+{% extends 'users/CenterBase.html' %}
+{% load static %}
+
+{% block title %}
+    <link rel="stylesheet" href="{% static 'css/article_refactor.css' %}">
+{% endblock %}
+
+{% block main %}
+    <div class="form_init">
+        <!-- 当前时间 -->
+        <div class="time">
+            <div id="div"></div>
+        </div>
+        <form>
+            {% csrf_token %}
+            {% block articleTitle %}
+
+            {% endblock %}
+
+
+            <span class="tips_">分&nbsp;类：</span>
+            <select id="cateId" required="required" size="1">  {# 必选项、可见数目 #}
+                {% if all_category %}
+                    {% for cate in all_category %}
+                        <option value="{{ cate.nid }}" id="category_option">{{ cate.title }}</option>
+                    {% endfor %}
+                {% else %}
+                    <option id="category_option"> -- </option>
+                {% endif %}
+            </select>
+
+            <a href="{% url 'users:add_category' %}"
+               style="border-right: 2px solid yellowgreen;padding-right: 5px;">&nbsp;➕&nbsp;</a>
+            <span class="tips_" style="border-left: 2px solid yellowgreen;padding-left: 5px;">标&nbsp;签：</span>
+            <select id="tagsId" required="required" size="1">  {# 必选项、可见数目 #}
+                {% if all_tags %}
+                    {% for tag in all_tags %}
+                        <option value="{{ tag.nid }}" id="tags_option">{{ tag.title }}</option>
+                    {% endfor %}
+                {% else %}
+                    <option id="tags_option"> -- </option>
+                {% endif %}
+            </select><a href="{% url 'users:add_tags' %}">&nbsp;➕&nbsp;</a>
+            {% block articleDetail %}
+
+            {% endblock %}
+            <input type="button" class="submit_article" value="发&nbsp;布">
+        </form>
+    </div>
+
+    <script src="{% static 'kindeditor/kindeditor-all.js' %}"></script>
+    <script src="{% static 'js/article_refactor.js' %}"></script>
+{% endblock %}

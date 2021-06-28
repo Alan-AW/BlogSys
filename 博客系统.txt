@@ -1,0 +1,432 @@
+ORM 跨表查询 （sql:子查询）
+	基于对象查询
+		一对多的关系	(Publish -- Book)
+			正向查询:按字段：
+
+				查询python这本书的出版社所在的名称
+
+				book_obj = Book.objets.filter(title="python").first()
+				print(book_obj.publish.name)
+
+			反向查询：按照表名的小写_set:
+
+				三里屯出版社出版过的所有书籍的名称
+
+				publish_obj = Publish.objects.filter(name="三里屯出版社").first()
+				print(publish_obj.book_set.all())
+				for obj in publish_obj.book_set.all():
+					print(obj.title)	
+					
+				
+		多对多的关系
+			正向查询，按字段
+			python这本书所有作者的名字
+
+			book_obj = Book.objects.filter(title="python").first()
+			book_obj.authors.all() 
+
+			反向查询,按表名小写_set:
+
+			郭小四出版过的所有书籍的名称
+			guo = Author.objects.filter(name="郭小四").first()
+			guo.book_set.all()		
+
+					
+		一对一的关系
+			正向查询:按字段
+				查询郭小四手机号
+				guo = Author.objects.filter(name="郭小四").first()
+				guo.ad.telephone
+			反向查询:按表名小写
+				查134开头的手机号的作者的名字
+				ad = AuthorDetail.objects.get(telephone__startswith="134")
+				ad.author.name
+
+			
+	基于QuerySet和__ : （sql: join语句）
+		正向查询：按字段
+		反向查询，按表名
+
+
+		一对多的关系	(Publish -- Book)
+			
+
+				查询python这本书的出版社所在的名称
+
+				Book.objets.filter(title="python").values("publish__name")
+
+
+	
+
+				三里屯出版社出版过的所有书籍的名称
+
+				Publish.objects.filter(name="三里屯出版社").values("book__title")
+		
+					
+				
+		多对多的关系
+			
+			python这本书所有作者的名字
+			Book.objects.filter(title="python").values("author__name")
+		
+			
+
+			郭小四出版过的所有书籍的名称
+			Author.objects.filter(name="郭小四").values("book__title")
+		
+					
+		一对一的关系
+				查询郭小四手机号
+				Author.objects.filter(name="郭小四").values("ad__telephone")
+		
+
+				查134开头的手机号的作者的名字
+				AuthorDetail.objects.filter(telephone__startswith="134").values("author__name")
+					
+
+	分组查询：
+		查询每一个出版社出版过的书籍的个数
+		Publish.objects.annotate(Count("book__id"))
+		
+	sql:	select count(*) from publish group by id;
+
+博客系统：
+	1.设计表
+
+		Blog(site个人站点表)
+			id = ...	
+			url = ...
+			theme= ...
+			user = One2One
+
+		UserInfo(User):
+			id
+			username
+			nickname
+			password
+			avatar=..
+			tel = ...
+			create_time = ...
+
+		
+		Article:
+			id = ..
+			title = ..
+			content = ...
+			pub_date = ...
+			
+			UserInfo = 外键
+			category = 外键
+			tags = Many2Many			
+
+
+		
+		Category(类别)
+			id 
+			name 
+
+		Tag(标签)
+			id
+			name
+
+
+		
+		UpDown:
+			id	
+			user_id
+			article_id
+			date	
+			is_up = True
+			
+
+		
+		Comment
+			id	
+			user_id     ForeignKey("UserInfo")
+			article_id  ForeignKey("Article")
+			content = ...
+			date
+			
+			parent_comment_id =ForeignKey("self")
+
+			
+
+			
+		1
+		   4
+                                      5
+                                2
+                                    6
+                                3			
+		
+		Comment			
+		id		user_id		article_id		content		parent_comment_id
+		1		haonan		    1		   111		 None
+		2		meijie		    1		   222		 None	
+		3		jiayu		    1                             333                        None	
+		4		guifang		     1		   444                          1
+		5		kang	                     1		   555                          4				
+		6		aaa	                     1                            666                          2
+
+
+
+ 			
+
+	2.基于ajax 登录，基于form组件的注册
+		media配置
+			静态文件：static
+					css
+					js
+					img
+					font
+					plugins
+		用户上传文件	media
+				  	avatar_dir/
+					................/
+
+		针对FileField , ImageField字段：
+			avatar = models.FileField(upload_to='avatar_dir/',default="/avatar/default.png")
+		默认会将FileField字段中的upload_to参数对应的值avatar_dir文件下载到项目的根目录虾
+		
+		如果，我们在settings里配置下面这句话：
+			MEDIA_ROOT = os.path.join(BASE_DIR,"blog","media")
+			将FileField 字段中的upload_to参数对应的值avatar_dir下载到MEDIA_ROOT路径下
+
+
+		使用media前需要做的如下配置：
+		settings.py:
+			MEDIA_URL = '/media/'
+
+		urls.py:
+			from django.views.static import serve
+			from cnblogs import settings
+			re_path('media/(?P<path>.*)',serve,{'document_root':settings.MEDIA_ROOT})
+
+ 	 	模板文件中：
+			<img width="60" height="60" src="/media/{{ article.user.avatar }}">		
+
+
+	3.系统首页设计
+		系统首页的文章渲染
+		1.方式一：
+			Book.objects.create(title="meijiewuyu",publish_id=2)
+		 方式二：
+			publish_obj = Publish.objects.filter(id=2).first()
+			Book.objects.create(title="meijiewuyu", publish=publish_obj)
+
+
+
+
+
+
+
+	4.个人的站点设计	（ORM跨表查询和分组查询）
+		日期归档:
+			mysql:
+				select create_time,Count(*) from Article group by create_time;
+				
+				select data_format(dt,"%Y-%m") from t1;
+			sqlite:
+				select strftime("%%Y-%%m-%%d",dt) from t1;
+
+		extra:
+			select * from book where readnum > pollnum
+
+			Book.objects.filter(readnum__gt=F("pollnum"))
+			
+			Book.objects.all().extra(select={XXX:XX})
+
+
+			queryResult = models.Article.objects.extra(select={'is_recent':"create_time>'2021-1-1'"})
+
+
+			models.Article.objects
+			.filter(nid=1)
+			.extra(select={"standard_time":"strftime('%%Y-%%m-%%d, create_time)"}
+			.values("standard_time","nid","title")
+	
+	补充知识点：extra
+	概念：1.在某些情况下，Django的查询语法难以简单地表达复杂的where子句，对于这种情况，Django提供了extra() QuerySet修改机制，它能在QuerySet生成的SQL从句中注入新子句。
+	           2.extra可以指定一个或多个参数。	 
+				
+
+
+
+
+
+	5.文章详细页	（点赞与踩灭，ajax提交评论，显示评论）
+		1.url设计
+		2.母版继承
+		3.自定义标签：
+		@register.filter:{{val|filter_name:参数}}
+		@register.simple_tag  	inclution_tag
+		4.文章详细内容的显示(转义)
+		
+
+		点赞：
+			点赞用户user就是当前登录用户  
+
+
+
+
+
+	6.后台管理页面	(kindeditor,BS模块)	
+
+
+
+
+
+
+
+
+
+
+博客项目回顾及梳理：
+	1.设计表关系
+	2.基于ajax和用户认证系统实现登录功能
+		图片验证码  ---PIL（pillow)
+		验证码的报错 --- session
+		验证码的刷新  img---src+="?"
+	
+	3.基于ajax和forms组件实现注册功能
+		设计RegForm组件
+			用form对象渲染注册页面-- 图像预览 :  reader =new FileReader()
+			AJAX发送数据	
+			$.ajax({
+				data:{"":""}
+			})
+		
+			涉及到文件上传
+			基于formdata = new FormData()
+			formdata.append("","")
+			$.ajax({
+				data:formdata
+			})
+		服务器：
+			构建对象:register_form = RegForm(request.POST)
+			接收数据：
+				在models里：
+					UserInfo表中：
+						avatar=models.FileField(upload_to="/avar")
+				校验：
+					if register_form.is_valid():
+						UserInfo.objects.create_user(username="",...,avatar=file_obj)    <---注册用户
+					else:
+						返回错误信息
+
+				注意：
+					将file_obj防到文件夹avar中，然后将avar放到项目的根目录中。
+					Media配置：
+						基于用户上传文件单独存储的需求：
+						MEDIA_ROOT = os.path.join(BASE_DIR,"blog","media")
+
+					此时，将file_obj会放到文件夹avar中，然后avar放到MEDIA_ROOT对应路径中					
+
+					客户端发送请求访问media文件夹下的所有文件
+
+
+	4. 个人站点的设计 -------ORM跨表查询，分组查询
+		关于日期归档
+			sql: select date_form("%Y-%m",date) from t1;
+				对应：
+			extra: Article.objects.all().extra(select={"var":"sql"})
+
+			分组：
+				用法1（针对多表）：Pulisher.objects.all().annotate(c=Count("book"))
+
+				用法2（针对单表）: Book.objects.all().values("publisher").annotate(c=Count(book.id))
+
+
+
+	5.文章详细页
+		1.继承:{% extend 'base.html' %}
+		2. {% include 'a.html' %}
+		3.@register.inclusion_tag("blog/archive.html")
+	
+	6.点赞
+		事务处理:  with transction.atomic()
+		
+		注意事项： 在js中{{}}渲染变量一定要加引号:"{{}}"
+			js中的if和python中的if的区别
+
+
+	7.评论
+		根评论: 对文章的评论
+		子评论：对评论的评论
+
+		comment表：
+			nid	user	article	content
+			  1 	  1	  2	   nb	
+			  2 	  2              2               very nb  
+		
+		难点：区分根评论和子评论
+		
+		1.基于Ajax提交评论
+		
+		2.Ajax显示和render显示
+			评论楼显示
+			评论树显示
+		
+		知识点：
+			评论人就是当前用户
+			在jquery中：
+				三个标签可以调用val()
+				1. input
+				2. select	
+				3.textarea		
+
+	8.后台管理页面
+		富文本编辑器
+		BS
+
+
+
+
+最后一部分：
+1.评论树
+	构建评论树数据
+	
+	展开评论树数据
+		递归展开。。。
+
+	
+
+2.评论树
+	演示
+
+comment_list =[
+{"id":1, "content:"meijie","Pid":None},
+{"id":2, "content:"meijie+1","Pid":None},
+{"id":3, "content:"meijie+2","Pid":None},
+{"id":4, "content:"jiayu","Pid":1},
+{"id":5, "content:"jiayu+1","Pid":1},
+{"id":6, "content:"777","Pid":4},
+{"id":7, "content:"7777","Pid":3},
+{"id":8, "content:"888","Pid":7},
+{"id":9, "content:"999","Pid":None},
+]
+
+
+
+CRM:
+#1.权限组件
+#2.stark组件
+#3.CRM    
+
+权限组件：
+https://www.bilibili.com/video/BV17t4y1e7fu?from=search&seid=9570627796839265452
+
+restful
+https://www.bilibili.com/video/BV1ZE411j7RK?from=search&seid=3944317357710113680
+
+
+
+
+
+
+
+
+
+
+
+

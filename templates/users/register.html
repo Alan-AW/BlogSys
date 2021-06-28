@@ -1,0 +1,55 @@
+{% extends 'users/SigRegBase.html' %}
+{% load static %}
+{% block title %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/register.css' %}">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+{% endblock %}
+
+{% block main %}
+<!-- register-form -->
+    <div class="content">
+        <form action="" novalidate method="post">
+            {% csrf_token %}
+            <h3 style="color: deepskyblue;height: 30px;text-align:center;margin-top: 7px;font-size: 25px">美好从注册开始</h3>
+            <p class="input"><b>用户名：</b><input id="user" placeholder="用户名3-10个字符，一旦确定不可修改！"
+                                                        maxlength="10"
+                                                        onkeyup="this.value=this.value.replace(/[^\u4e00-\u9fa5][^a-zA-Z]/g,'')"
+                                                        type="text"
+                                                        name="user"><span></span>
+            </p>
+            <p class="input"><b>邮&nbsp&nbsp箱：</b><input id="email" placeholder="然后输入你的邮箱" type="text"
+                                                        maxlength="20"
+                                                        onkeyup="this.value=this.value.replace(/[, ]/g,'')"
+                                                        name="email"><span></span>
+            </p>
+            <p class="input"><b>密&nbsp&nbsp码：</b><input id="pwd" placeholder="8-16位密码包含数字和大小写字母" type="password"
+                                                        maxlength="16"
+                                                        onkeyup="this.value=this.value.replace(/[, ]/g,'')"
+                                                        name="pwd"><span></span>
+            </p>
+            <p class="input"><b>验&nbsp&nbsp证：</b><input id="re_pwd" placeholder="再次输入密码" type="password"
+                                                        maxlength="16"
+                                                        onkeyup="this.value=this.value.replace(/[, ]/g,'')"
+                                                        name="re_pwd"><span></span>
+            </p>
+            <p class="input"><b>手&nbsp&nbsp机：</b><input id="tel" placeholder="最后填上电话号码"
+                                                        maxlength="11"
+                                                        onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"
+                                                        type="text"
+                                                        name="tel"><span></span>
+            </p>
+            <div class="sms_code"><input id="sms_code" type="text" placeholder="输入短信验证码"
+                                         onkeyup="this.value=this.value.replace(/[, ]/g,'')"
+                                         name="sms_code"><input type="button" style="font-family: 楷体;" id="send_sms_code" value="发送验证码"></div>
+            <input type="button" class="sub" style="font-family: 楷体;" value="确认注册">
+            <p style="color: #ADFF2F;text-align: center;margin-top: 5rem">已经有了账号?<a href={% url 'users:login' %}>点我去登录</a></p>
+        </form>
+    </div>
+    <script src="{% static 'js/register.js' %}"></script>
+{% endblock %}
+
+
+
+
+
+

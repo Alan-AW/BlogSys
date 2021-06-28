@@ -1,0 +1,174 @@
+* {
+	margin: 0;
+	padding: 0;
+    font-family: 楷体;
+}
+
+/*视频背景 ---- 已经放弃，后期需要可参考*/
+/*video {*/
+/*    position: fixed; !*视频定位方式设为固定*!*/
+/*    right: 0;*/
+/*    bottom: 0; !*视频位置*!*/
+/*    min-width: 100%;*/
+/*    min-height: 100%; !*不会因视频尺寸造成页面需要滚动*!*/
+/*    width: auto;*/
+/*    height: auto; !*尺寸保持原视频大小*!*/
+/*    z-index: -10; !*z轴定位，小于0即可*!*/
+/*    -webkit-filter: grayscale(20%); !*添加灰度蒙版，如果设定为100则视频显示为黑白*!*/
+/*}*/
+
+a {
+	text-decoration: none;
+}
+
+/* login_window */
+.loginmain{
+	border-radius: 20px;
+    background: rgba(0, 0, 0, 0.4);
+    width: 540px;
+    height: 320px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    padding: 80px 40px 60px 40px;
+    box-shadow: -15px 15px 15px rgba(6, 17, 47, 0.7);
+    z-index: 9999;
+}
+
+.error{
+    color: deepskyblue;
+    height: 50px;
+    font-size:25px;
+    text-align: center;
+    margin-top: -10px;
+}
+
+.login-con{
+    height: 208px;
+    position: absolute;
+    left: 0;
+    width: 80%;
+    margin:0 10%;
+}
+
+.login-user{
+    position: relative;
+}
+
+.icon{
+    position: absolute;
+    z-index: 1;
+    left: 36px;
+    top: 8px;
+    opacity: 1;
+}
+
+.login-con input{
+    width: calc(100% - 130px);
+    margin-top: -2px;
+    background: rgba(57, 61, 82, 0);
+    left: 0;
+    padding: 10px 65px;
+    border-top: 2px solid rgba(57, 61, 82, 0);
+    border-bottom: 2px solid rgba(57, 61, 82, 0);
+    border-right: none;
+    border-left: none;
+    outline: none;
+    font-family: 'Gudea', sans-serif;
+    box-shadow: none;
+    color: #61BFFF !important;
+}
+
+.login-pwd, .login-yan{
+    position: relative;
+}
+
+.login-btn{
+    border-radius: 12px;
+    font-size: 25px;
+    width: 70%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.login-btn input{
+    font-family: 楷体;
+    border-radius: 12px;
+    background: transparent;
+    border: 2px solid #4FA1D9;
+    color: #4FA1D9;
+    text-transform: uppercase;
+    font-size: 25px;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 80%;
+    transition-property: background,color;
+    -webkit-transition-duration: .2s;
+    transition-duration: .2s;
+}
+
+.login-btn input:hover{
+    color: white !important;
+    background: #4FA1D9;
+    cursor: pointer;
+    -webkit-transition-property: background,color;
+    transition-property: background,color;
+    -webkit-transition-duration: .2s;
+    transition-duration: .2s;
+}
+
+.re_img img {
+    margin-left: 30%;
+    margin-top: 15px;
+    margin-bottom: 10px;
+	border-radius: 10px;
+	width: 200px;
+	height: 50px;
+}
+
+.to_reg {
+    position: absolute;
+	left: 26%;
+    bottom: -90px;
+	margin: 0 auto;
+}
+
+.regi {
+    color: deepskyblue;
+    text-decoration: none;
+}
+
+.regi:hover {
+    color: deeppink;
+}
+
+.forg {
+	color: deeppink;
+	text-decoration: none;
+}
+
+.forg:hover {
+    color: deepskyblue;
+}
+
+/* error */
+.error {
+    margin: 0 auto;
+    width: 70%;
+    height: 40px;
+    color: greenyellow;
+}
+
+/* error_msg */
+.error span {
+    text-align: center;
+    font-size: 25px;
+    color: lightgoldenrodyellow;
+}

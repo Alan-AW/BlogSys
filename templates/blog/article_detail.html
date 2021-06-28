@@ -1,0 +1,114 @@
+{% extends 'users/HomeBase.html' %}
+{% load static %}
+{% load my_tags %}
+
+<!-- 标题 -->
+{% block title %}
+    <link rel="stylesheet" href="{% static 'css/article_detail.css' %}">
+    <!-- 使用任意代码块分割插件自动将代码关键字加上相应标签，使用的是一款名叫 prism 的插件 -->
+    <script src="//cdn.jsdelivr.net/gh/cetr/cdn@master/prism.min.js"></script>
+{% endblock %}
+
+<!-- 文章详情显示 -->
+{% block main %}
+    <div id="article-detail-show">
+        {% csrf_token %}
+        <!-- 文章标题 -->
+        <h1 style="text-align: center;margin-bottom: 2rem">{{ article_obj.article.title }}</h1>
+        <hr style="size: 2px;margin-bottom: 1.2rem">
+        <!-- 文章详情 -->
+        <div class="article-desc-p" style="line-height: 30px"
+           article_id="{{ article_obj.nid }}">{{ article_obj.count|safe }}</div>
+    </div>
+
+    <!-- 点赞和踩灭 -->
+    <div class="up_down">
+        <p class="ask" style="color: whitesmoke;background-color: rgb(0,120,215)">这篇文章对你有用吗?🔜</p>
+        <div class="digg-body">
+            <div class="digg to-up">
+                <div class="for-img">
+                    <img src="{% static 'img/tools-img/upup-dd.png' %}" alt="赞" title="很棒!赞一个~">
+                </div>
+                <span class="showUp showcount"
+                      style="color: green;margin-left: 10px">{{ article_obj.article.up_count }}</span>
+            </div>
+
+            <div class="digg to-down">
+                <span class="showDown showcount"
+                      style="color: red;margin-right: 10px">{{ article_obj.article.down_count }}</span>
+                <div class="for-img">
+                    <img src="{% static 'img/tools-img/upup-dd.png' %}" alt="踩" title="不敢苟同!踩一个~">
+                </div>
+            </div>
+        </div>
+
+        <span class="error" style="color: red" id="to_up_error"></span>
+    </div>
+
+    <!-- 版权声明 -->
+    <div class="Copyright Notice">
+        <div class="statement">
+            <ul>
+                <li>作者：<span class="article_username"
+                             id="{{ article_obj.article.user }}">{{ article_obj.article.user }}</span><a
+                        href="/{{ article_obj.article.user }}/"
+                        style="color: deepskyblue"
+                        target="_blank">  {# 新开页面 #}
+                    （联系作者）</a></li>
+                <li>发表时间：<span>{{ article_obj.article.create_time|date:'Y/m/d H:s' }}</span></li>
+                <li>版权声明：自由转载-非商用-非衍生-保持署名（创意共享3.0许可证）</li>
+                <li>转载声明：如果是转载站长转载的文章，请附上原文链接</li>
+                <li>公众号转载：请在文末添加本站二维码（二维码见右边，欢迎关注）</li>
+            </ul>
+        </div>
+        <!-- 网站二维码 -->
+        <div class="my-site-img">
+            <img src="{% static 'img/my_site.png' %}" alt="" class="" style="width: 120px">
+        </div>
+    </div>
+
+    <!-- 评论区 -->
+
+
+    <div class="comment">
+        <p style="text-align: left;font-size: 2rem;color: deepskyblue;border-bottom: 3px double lightblue;padding-left: 20px">
+            评论区:</p>
+
+        <!-- 登录才可以评论 -->
+        {% if request.user.is_authenticated %}
+            <textarea class="comment-text" name="user_comment" id="content" rows="3"
+                      placeholder="还是说点什么吧，o(￣ヘ￣o＃)哼..."></textarea>
+            <input type="button" id="default_comment_button" name="submit_comment" value="发表" class="sub_comment">
+        {% else %}
+            <p class="not_login" style="line-height: 22px;font-size: 22px">请先<a href="{% url 'users:login' %}">登录</a>后评论
+            </p>
+        {% endif %}
+
+        <!-- 显示评论 -->
+        <div class="show_comment">
+            <p><span id="howmany" style="color: lightcoral">{{ article_obj.article.comment_count }}</span>条评论</p>
+            {% for comment in comment_obj %}
+                <div class="one-of-comment-tree" self_id="{{ comment.pk }}">
+                    <div class="show-avatar">
+                        <img src="{% static 'img/bg_img/batterfly.jpg' %}" id="show-avatar" alt="头像加载失败">
+                    </div>
+                    <p class="username" style="margin-bottom: 10px;color: lightcoral">{{ comment.user.username }}:</p>
+                    <p class="comment-time" style="color: grey">{{ comment.create_time|date:'Y/m/d H:s' }}</p>
+                    <p class="comment-desc" style="margin-top: 5px;margin-left: 60px;color: deepskyblue">{{ comment.content }}</p>
+                    {% if request.user.is_authenticated %}
+                        <input type="button" class="replay" value="回复">
+                    {% endif %}
+                    <input type="button" class="get_son_comment" value="......"
+                           style="outline: none;border-radius: 20%;border: none;background-color: rgba(0,0,0,0);color: #0f0f0f">
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script src="{% static 'js/article_detail.js' %}"></script>
+{% endblock %}
+
+<!-- 右侧详情 -->
+{% block right %}
+    {% get_classification_style username %}
+{% endblock %}

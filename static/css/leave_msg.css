@@ -1,0 +1,271 @@
+* {
+	margin: 0;
+	padding: 0;
+	font-family: 楷体;
+}
+
+a {
+	text-decoration: none;
+}
+
+body {
+	background: url(/static/img/bg_img/bgbgbgbgbg.jpg) fixed center center no-repeat;
+	background-size: cover;
+	width: 99.9%;
+	height: 100%;
+}
+
+/* 导航 */
+#navgation {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 3.125rem;
+	overflow: hidden;
+	background-color: rgba(235,235,235,0);
+	z-index: 100;
+	box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, .2);
+	transition: all 0.5s;
+	border: 1px solid rgba(0, 0, 0, .1)
+}
+
+#navigation::before {
+	content: '';
+	width: 100%;
+	height: 3.125rem;
+	filter: blur(0.35rem);
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: -1;
+}
+
+#navgation #nav {
+	width: 49.5rem;
+	height: 3.125rem;
+	margin: 0 auto;
+}
+
+#navgation #nav li {
+	display: block;
+	width: 8.25rem;
+	height: 3.125rem;
+	line-height: 3.125rem;
+	text-align: center;
+	float: left;
+	font-size: 1.5rem;
+}
+
+#navgation #nav li a {
+	color: rgb(0,235,235);
+	display: block;
+	width: 100%;
+	height: 100%;
+	line-height: 3.125rem;
+	text-align: center;
+	transition: all 0.3s;
+}
+
+#navgation #nav li a:hover {
+	font-size: 1.9rem;
+	/* color: whitesmoke; */
+}
+
+#navgation #nav li img {
+	float: left;
+	width: 1.875rem;
+	height: 1.875rem;
+	border-radius: 50%;
+	object-fit: cover;
+	margin-top: 0.55rem;
+}
+
+/* 留言区域 */
+.center {
+	position: relative;
+	top: 3.75rem;
+	width: 60%;
+	margin: 0 auto;
+	margin-top: 20px;
+	transition: all 0.5s;
+}
+
+.random {
+	font-size: 22px;
+	margin-bottom: 0.625rem;
+}
+
+.tips {
+	position: relative;
+	box-sizing: border-box;
+	padding: 1.25rem;
+	border-radius: 1.25rem;
+	margin-bottom: 1.875rem;
+	border-bottom: 3px solid lightgreen;
+}
+
+.iknow {
+	margin: 10px 0;
+	font-size: 16px;
+}
+
+.to-leave {
+	box-sizing: border-box;
+	padding: 10px;
+	background-color: rgba(245,245,245,.53);
+}
+
+.leave-text {
+	width: 100%;
+	border-radius: 1.25rem;
+	border: 3px dotted lightgreen;
+	padding: 20px;
+	box-sizing: border-box;
+	margin-top: 20px;
+
+	outline: none;
+	font-size: 1.5625rem;
+	background: url(/static/img/bg_img/ds.png) no-repeat right bottom;
+}
+
+#submit_leave_button {
+	background-color: #1abc9c;
+	font-size: 1.25rem;
+	outline: none;
+	color: whitesmoke;
+	box-sizing: border-box;
+	margin-top: 1.25rem;
+	padding: 0.3125rem;
+	border-radius: 5px;
+	border: 2px solid lightcyan;
+	transition: all 0.3s;
+}
+
+#submit_leave_button:hover {
+	background-color: lightgreen;
+}
+
+/* 展示所有留言 */
+.showleavemsg {
+	width: 60%;
+	margin: 0 auto;
+	position: relative;
+	top: 5rem;
+	padding: 20px;
+	box-sizing: border-box;
+	background-color: rgba(245,245,245,.53);
+}
+
+.all_leave {
+	margin-bottom: 20px;
+	font-size: 20px;
+}
+
+.one-of-leave {
+	position: relative;
+	top: 0;
+	width: 100%;
+	margin-top: 40px;
+}
+
+.one-of-leave img {
+	width: 50px;
+	position: absolute;
+	top: 0;
+}
+
+.one-of-leave p {
+	margin-left: 60px;
+	font-size: 22px;
+}
+
+.set_nick_name {
+	width: 30%;
+	height: 50px;
+	outline: none;
+	border: 3px dotted lightgreen;
+	border-radius: 20px;
+	font-size: 20px;
+	box-sizing: border-box;
+	padding-left: 20px;
+}
+
+.leave-content {
+	margin-top: 10px;
+}
+
+/* 最底部 */
+.footer {
+	margin-top: 100px;
+	width: 100%;
+	background-color: rgba(10,235,235,.53);
+	text-align: center;
+	padding-top: 10px;
+	box-sizing: border-box;
+}
+
+.footer a {
+	color: hotpink;
+	transition: all 0.3s;
+}
+
+.footer a:hover {
+	color: pink;
+}
+
+.footer p {
+	margin-top: 10px;
+}
+
+
+
+
+
+
+
+/* 返回顶部 */
+.back-to-top {
+	background-image: url("https://cdn.jsdelivr.net/gh/cetr/cdn@master/blog/img/space-to-top.png");
+	width: 62px;
+	height: 88px;
+	position: fixed;
+	bottom: 3.125rem;
+	right: 3.125rem;
+}
+
+.back-to-top:hover {
+	animation: to-top-fly .4s steps(1) infinite;
+}
+
+@keyframes to-top-fly {
+	0% {
+		background-position-x: -142.5px;
+	}
+
+	16.5% {
+		background-position-x: -284.5px;
+	}
+
+	33% {
+		background-position-x: -429.5px;
+	}
+
+	49.5% {
+		background-position-x: -570.5px;
+	}
+
+	66% {
+		background-position-x: -714.5px;
+	}
+
+	82.5% {
+		background-position-x: -856.5px;
+	}
+
+	100% {
+		background-position-x: 0;
+	}
+}
+

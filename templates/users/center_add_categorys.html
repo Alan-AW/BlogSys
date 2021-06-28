@@ -1,0 +1,32 @@
+{% extends 'users/CenterBase.html' %}
+{% load static %}
+
+{% block title %}
+    <link rel="stylesheet" href="{% static 'css/add_msg.css' %}">
+{% endblock %}
+
+{% block main %}
+    <div class="add_msg_form">
+    <div class="form">
+    {% csrf_token %}
+        {% if title %}
+            <p class="suffix">
+                <span id="show_suffix">我&nbsp;的&nbsp;博&nbsp;客:</span>
+                <input type="text" value="{{ title }}" disabled>
+            </p>
+        <p class="category">
+                <span id="show_theme">添&nbsp;加&nbsp;分&nbsp;类:</span>
+                <input type="text" class="edit_cate" onkeyup="this.value=this.value.replace(/[ ]/g,'')"
+                       placeholder="添加一个分类">
+                <span id="error_msg" style="color: red"></span>
+            </p>
+            <input type="button" class="sub_massage" value="提交">
+        {% else %}
+            <p>请先&nbsp;<a href="{% url 'users:add_blog' %}" style="color: palegreen">编辑博客</a>&nbsp;信息之后再添加分类</p>
+        {% endif %}
+
+    </div>
+
+    </div>
+    <script src="{% static 'js/add_category.js' %}"></script>
+{% endblock %}

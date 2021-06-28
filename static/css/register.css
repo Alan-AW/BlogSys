@@ -1,0 +1,158 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 楷体;
+}
+
+a {
+    text-decoration: none;
+}
+
+/*表单区域毛玻璃效果*/
+.content {
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.4);
+    width: 700px;
+    height: 650px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    padding-top: 30px;
+    /*padding: 80px 40px 60px 40px;*/
+    box-shadow: -15px 15px 15px rgba(6, 17, 47, 0.7);
+    z-index: 9999;
+}
+
+.input {
+    text-align: left;
+    padding-left: 70px;
+    height: 60px;
+    width: 100%;
+    font-size: 25px;
+    margin-top: 10px;
+    background: rgba(0, 0, 0, 0);
+    box-shadow: none;
+    color: #61BFFF !important;
+}
+
+/*输入框*/
+form p input {
+    width: 380px;
+    height: 30px;
+    background: rgba(0, 0, 0, 0);
+    box-shadow: none;
+    color: #61BFFF !important;
+}
+
+/* 默认提示信息字体颜色 */
+input::-webkit-input-placeholder {
+    color: whitesmoke;
+}
+
+/* 手机验证码区域 */
+.sms_code {
+    width: 90%;
+    height: 50px;
+    line-height: 50px;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+
+/* 手机验证码输入框 */
+.sms_code input {
+    line-height: 30px;
+    height: 30px;
+    float: left;
+    margin-left: 22%;
+    background: rgba(0, 0, 0, 0);
+    box-shadow: none;
+    color: #61BFFF !important;
+}
+
+/* 发送按钮 */
+#send_sms_code {
+    width: 30%;
+    margin-left: 15px;
+    margin-top: 7px;
+    height: 50px;
+    outline: none;
+    border: 1px solid deepskyblue;
+    border-radius: 10px;
+    font-size: 20px;
+    background: rgba(0, 0, 0, 0);
+    box-shadow: none;
+    color: #61BFFF !important;
+}
+
+#send_sms_code:hover {
+    color: white !important;
+    background: #4FA1D9;
+    cursor: pointer;
+    -webkit-transition-property: background, color;
+    transition-property: background, color;
+    -webkit-transition-duration: .2s;
+    transition-duration: .2s;
+}
+
+/* 输入框 */
+form input {
+    margin-top: 10px;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid deepskyblue;
+    padding: 7px 0;
+    border-radius: 3px;
+    padding-left: 5px;
+}
+
+/*提交按钮*/
+.sub {
+    position: relative;
+    top: 3rem;
+    left: 24%;
+    margin: 0 auto;
+    font-size: 22px;
+    text-align: center;
+    width: 53%;
+    height: 50px;
+    border: 1px solid deepskyblue;
+    border-radius: 10px;
+    padding: 0;
+    outline: none;
+    background: rgba(0, 0, 0, 0);
+    box-shadow: none;
+    color: #61BFFF !important;
+}
+
+.sub:hover {
+    color: white !important;
+    background: #4FA1D9;
+    cursor: pointer;
+    -webkit-transition-property: background, color;
+    transition-property: background, color;
+    -webkit-transition-duration: .2s;
+    transition-duration: .2s;
+
+}
+
+.sub:active {
+    border: 3px solid gold;
+}
+
+form span {
+    color: red;
+    font-size: 18px;
+}
+
+form a {
+    color: deeppink;
+    text-decoration: none;
+}
+
+form a:hover {
+    color: gold;
+}
+

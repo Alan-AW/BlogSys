@@ -1,0 +1,16 @@
+/* 天气 */
+.weather {
+	float: right;
+	margin-right: 10rem;
+}
+
+.weather a {
+	display: block;
+	color: seagreen;
+	font-size: 1rem;
+	transition: all 0.5s;
+}
+
+.weather a:hover {
+	background-color: rgba(235,245,245,.53);
+}

@@ -1,0 +1,66 @@
+{% extends 'users/SigRegBase.html' %}
+{% load static %}
+
+{% block title %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/signin.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+{% endblock %}
+
+{# 动态视频背景 ----> 太过花里胡哨，已经放弃 #}
+{#<video src="../static/img/siginBG.MP4" muted="muted" autoplay="autoplay" loop="loop"></video>  一定要这么设置，才能保证打开页面的时候正常#}
+
+{% block main %}
+    <!-- 登录表单 -->
+    <div class="loginmain">
+        <form action="">
+            {% csrf_token %}
+        </form>
+        <div class="error"><span id="error">向梦想出发!</span></div>
+        <div class="login-con">
+            <div class="login-user">
+                <div class="icon">
+                    <img src="/static/img/signin/user_icon_copy.png" alt="">
+                </div>
+                <input type="text" id="user" name="user" autocomplete="off" maxlength="16"
+                       onkeyup="this.value=this.value.replace(/[^\u4e00-\u9fa5][^a-zA-Z]/g,'')"
+                       placeholder="用户名">
+            </div>
+            <div class="login-pwd">
+                <div class="icon">
+                    <img src="/static/img/signin/lock_icon_copy.png" alt="">
+                </div>
+                <input type="password" id="pwd" name="pwd" autocomplete="off" maxlength="16"
+                       onkeyup="this.value=this.value.replace(/[, ]/g,'')"
+                       placeholder="输入密码">
+            </div>
+            <div class="login-yan">
+                <div class="icon">
+                    <img src="/static/img/signin/key.png" alt="">
+                </div>
+                <input id="re_code" type="text" name="re_code" placeholder="下方验证码点击切换" maxlength="6"
+                       onkeyup="this.value=this.value.replace(/[, ]/g,'')">
+            </div>
+
+            <div class="re_img"><img id="re_code_img" style="max-width: 100%" height="40px"
+                                     src="{% url 'users:get_valid_img' %}"
+                                     alt="图片加载失败">
+            </div>
+
+            <div class="login-btn">
+                <input type="button" value="登&nbsp;&nbsp;录">
+            </div>
+
+            <div class="to_reg" style="color: #ADFF2F;">还没有账号?<a class="regi"
+                                                                 href="{% url 'users:register' %}">点我去注册</a>&nbsp;&nbsp;<a
+                    class="forg" href="{% url 'users:forget_pwd' %}">忘记密码?</a></div>
+
+        </div>
+
+    </div>
+    <script src="{% static 'js/signin.js' %}"></script>
+{% endblock %}
+
+
+
+
+

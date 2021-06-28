@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Mr'Xu">
+    <meta name="Description" content="‘那可是家大公司’">
+    <meta name="keywords" content="‘那可是家大公司’,博客，微博，空间，我的博客，登录，注册">
+    <meta name="website" content="http://127.0.0.1:8001/">
+    <link rel="shortcut icon" href="{% static 'favicon/风车.svg' %}"/>
+    <title id="title"></title>
+    <link rel="stylesheet" href="{% static 'css/leave_msg.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://eqcn.ajz.miesnfu.com/wp-content/plugins/wp-3d-pony/live2dw/lib/L2Dwidget.min.js"></script>
+</head>
+<body>
+<!-- 已登录导航 -->
+{% if request.user.is_authenticated %}
+    <div id="navgation">
+        <ul id="nav">
+            <li><a href="{% url 'blog:home' %}" class="url"><img
+                    src="{% static 'img/icon/home.png' %}">首页</a>
+            </li>
+            <li><a href="{% url 'blog:home' %}" class="url"><img
+                    src="{% static 'img/icon/python.jfif' %}">Python</a>
+            </li>
+            <li><a href="{% url 'blog:home' %}" class="url"><img
+                    src="{% static 'img/nav/lyb.png' %}">留言板</a>
+            </li>
+            <li><a href="{% url 'blog:about' %}" class="url"><img
+                    src="{% static 'img/nav/about.jpg' %}">关于我</a></li>
+            <li><a href="{% url 'users:center_welcome' %}" class="url"><img
+                    src="{% static 'img/nav/new-setting.jpg' %}">{{ user.username }}
+            </a>
+            </li>
+            <li class="user_msg"><a href="{% url 'users:logout' %}" class="url"><img
+                    src="{% static 'img/nav/logout.png' %}">注销</a></li>
+        </ul>
+    </div>
+    <!-- 未登录导航 -->
+{% else %}
+    <div id="navgation">
+        <ul id="nav">
+            <li><a href="{% url 'blog:home' %}" class="url"><img
+                    src="{% static 'img/icon/home.png' %}">首页</a>
+            </li>
+            <li><a href="{% url 'blog:leave_msg' %}" class="url"><img
+                    src="{% static 'img/icon/python.jfif' %}">Python</a>
+            </li>
+            <li><a href="" class="url"><img
+                    src="{% static 'img/nav/lyb.png' %}">留言板</a>
+            </li>
+            <li><a href="{% url 'blog:about' %}" class="url"><img
+                    src="{% static 'img/nav/about.jpg' %}">关于我</a></li>
+            <li><a href="{% url 'users:login' %}" class="url"><img
+                    src="{% static 'img/nav/qq.jpg' %}">登录</a></li>
+            <li><a href="{% url 'users:register' %}" class="url"><img
+                    src="{% static 'img/nav/register.jpg' %}">注册</a></li>
+        </ul>
+    </div>
+{% endif %}
+
+<div class="center">
+    <p class="random" style="text-align: center;">继续踏上旅途，在没有你的春天...❤</p>
+    <div class="tips">
+        <p style="font-size: 2rem;margin-bottom: 20px;">留言板</p>
+        <img src="{% static 'img/bg_img/message1.webp' %}">
+        <p class="iknow">我知道，你一定有<span style="color: lightblue;">很多很多很多想对我说的话</span>，那，就写在下面吧！<span
+                style="color: orangered;">小杰</span>永远<span style="color: red;">不会</span>错过每一条留言，因为，<span
+                style="color: lightcoral;">失去的，或许就，再也得不到了</span>...😔</p>
+    </div>
+
+    <div class="to-leave">
+        <p>我想对小杰说~</p>
+        {% csrf_token %}
+        <textarea class="leave-text" id="content" rows="5" placeholder="大老远来一趟,还是说点什么吧， o(￣ヘ￣o＃)哼..."
+                  maxlength="250"></textarea>
+        {% if request.user.is_authenticated %}
+            <input type="button" id="submit_leave_button" value="咻(●'◡'●)ﾉ"/>
+            <span class="error-tips" style="color: lightgreen">咻的一下~</span>
+        {% else %}
+            <span style="color: red">*&nbsp;</span>
+            <input type="text" class="set_nick_name" maxlength="10" onkeyup="this.value=this.value.replace(/[ ]/g,'')"
+                   placeholder="输入留言的昵称哦">
+            <input type="button" id="submit_leave_button" class="not_signin" value="咻(●'◡'●)ﾉ"/>
+            <span class="error-tips" style="color: lightgreen">咻的一下~</span>
+        {% endif %}
+    </div>
+</div>
+
+<div class="showleavemsg">
+    <p class="all_leave"><span class="all_count" style="color: green">{{ all_leave_count }}</span>&nbsp;只<span
+            style="color: lightpink">小可爱</span>已被捕捉~</p>
+    {% for leave in leave_obj %}
+        <div class="one-of-leave">
+            <img class="img" src="{% static 'img/nav/about.jpg' %}">
+            <p class="about_msg"><span class="username" style="color: orangered">{{ leave.nick_name }}:&nbsp;&nbsp;&nbsp;</span><span
+                    class="create_date">{{ leave.create_time|date:'Y-m-d H' }}时</span></p>
+            <p class="leave-content" style="color: deepskyblue"><b>{{ leave.content }}</b></p>
+        </div>
+    {% endfor %}
+
+
+</div>
+
+<!-- 底部详情 -->
+<div class="footer">
+    <p>一起<a href="{% url 'blog:yktt' %}">去看樱花呀~</a></p>
+    <p>“我们努力的意义就在于遇到自己喜欢的东西就把TA留在身边，而不是成为多年后难以启齿的遗憾~”</p>
+    <p>不妨勇敢一些，放手一搏！反正我们都不能活着离开这个世界！</p>
+</div>
+
+<!-- 返回顶部 -->
+<div class="back-to-top" id="back-top"></div>
+<script src="{% static 'js/leave_msg.js' %}"></script>
+</body>
+</html>

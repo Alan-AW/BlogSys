@@ -1,0 +1,345 @@
+* {
+	margin: 0;
+	padding: 0;
+	font-family: 楷体;
+}
+
+body {
+	background-color: whitesmoke;
+	background: url(/static/img/bg_img/4.jfif) fixed center center no-repeat;
+	background-size: cover;
+	width: 100%;
+	height: 100%;
+}
+/*body {*/
+/*	scrollbar-face-color: deeppink;!*(立体滚动条凸出部分的颜色)*!*/
+/*	scrollbar-highlight-color: darkgreen;!*(滚动条空白部分的颜色)*!*/
+/*	scrollbar-shadow-color: deeppink;  !*(立体滚动条阴影的颜色)*!*/
+/*	scrollbar-arrow-color: indianred;  !*(上下按钮上三角箭头的颜色)*!*/
+/*	scrollbar-base-color: deeppink;  !*(滚动条的基本颜色)*!*/
+/*	scrollbar-darkshadow-color:#FFFFFF   !*(立体滚动条强阴影的颜色)*!*/
+/*}*/
+
+/* 顶部 */
+a {
+	text-decoration: none;
+}
+
+#head {
+	width: 100%;
+	height: 38rem;
+	background: url(/static/img/bg_img/3.jpg) fixed bottom no-repeat;
+	background-size: cover;
+	overflow: hidden;
+	margin-bottom: 8rem;
+}
+
+/* 遮罩层 */
+.a {
+	width: 100%;
+	height: 47rem;
+	background-color: rgba(100, 100, 100, 0);
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 99;
+}
+
+/* 导航 */
+#navgation {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 3.125rem;
+	overflow: hidden;
+	border: 1px solid rgba(0, 0, 0, .1);
+	box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, .3);
+	z-index: 100;
+	transition: all 0.5s;
+}
+
+#navigation::before {
+	content: '';
+	width: 100%;
+	height: 3.125rem;
+	filter: blur(0.35rem);
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: -1;
+}
+
+#navgation #nav {
+	width: 49.5rem;
+	height: 3.125rem;
+	margin: 0 auto;
+}
+
+#navgation #nav li {
+	display: block;
+	width: 8.25rem;
+	height: 3.125rem;
+	line-height: 3.125rem;
+	text-align: center;
+	float: left;
+	font-size: 1.5rem;
+}
+
+#navgation #nav li a {
+	display: block;
+	width: 100%;
+	height: 100%;
+	color: whitesmoke;
+	line-height: 3.125rem;
+	text-align: center;
+	transition: all 0.3s;
+}
+
+#navgation #nav li a:hover {
+	font-size: 1.9rem;
+	color: whitesmoke;
+}
+
+#navgation #nav li img {
+	float: left;
+	width: 1.875rem;
+	height: 1.875rem;
+	border-radius: 50%;
+	object-fit: cover;
+	margin-top: 0.55rem;
+}
+
+/* waiting for you */
+#head h1 {
+	text-align: center;
+	margin: 0 auto;
+	margin-top: 7rem;
+	font-size: 9.5rem;
+	background: -webkit-linear-gradient(left, deepskyblue, #FFD700 25%, deepskyblue 50%, #FFD700 75%, deepskyblue);
+	color: transparent;
+	-webkit-background-clip: text;
+	background-size: 200% 100%;
+	animation: masked-animation 4s infinite linear;
+}
+
+@-webkit-keyframes masked-animation {
+	0% {
+		background-position: 0 0;
+	}
+
+	100% {
+		background-position: -100% 0;
+	}
+}
+
+#comeon {
+	font-size: 1.5rem;
+	text-align: center;
+	color: whitesmoke;
+}
+
+/* 展示信息 */
+.anther {
+	position: absolute;
+	bottom: 13rem;
+	left: 10%;
+	width: 80%;
+	height: 18rem;
+	border-radius: 0.75rem;
+	background-color: rgba(10, 10, 10, .53);
+}
+
+.anther #avatar {
+	width: 9rem;
+	height: 9rem;
+	border-radius: 50%;
+	margin: 0 auto;
+	margin-bottom: 1.25rem;
+	border: 0.3125rem dotted rgba(245, 245, 245, .53);
+}
+
+#avatar img {
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	object-fit: cover;
+}
+
+#say {
+	text-align: center;
+	height: 8.25rem;
+}
+
+#say span {
+	font-size: 1.875rem;
+}
+
+.one {
+	color: greenyellow;
+}
+
+.two {
+	color: #F08080;
+}
+
+.thr {
+	color: #00BFFF;
+}
+
+.fou {
+	color: burlywood;
+}
+
+/* 左侧 */
+.left {
+	width: 12%;
+	font-size: 20px;
+	line-height: 30px;
+	background-color: rgba(245,245,245,.53);
+	margin-left: 6%;
+	margin-top: 1rem;
+	margin-right: 2%;
+	float: left;
+
+}
+
+.left,.right {
+	position: static;
+	top: 100px;
+	border-radius: 1rem;
+	box-sizing: border-box;
+	padding: .6rem;
+	border: 3px dotted lightcoral;
+}
+
+.left p,.right p {
+	width: 100%;
+	margin-top: 0.5rem;
+	overflow:hidden;
+	box-sizing: border-box;
+}
+
+.left p {
+	text-align: center;
+}
+
+.right p {
+	padding-left: 1rem;
+	text-align: left;
+}
+
+.right h4 {
+	margin-left: .5rem;
+}
+
+/* 中部循环出单个的块进行填充 */
+.center {
+	width: 60%;
+	float: left;
+	margin: 0 auto;
+	margin-bottom: 1.25rem;
+	background-color: rgba(0,0,0,0);
+}
+
+/* 右侧 */
+.right {
+	float: left;
+	width: 12%;
+	margin-top: 1rem;
+	margin-left: 2%;
+	background-color: rgba(245,245,245,.73);
+}
+
+.right a {
+	color: deeppink;
+}
+
+.right a:hover {
+	border-bottom: 1px dotted deepskyblue;
+}
+
+/* 分页 */
+.page{
+	width: 60%;
+	clear: left;
+	margin: 0 auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	text-align: center;
+	font-size: 1.5625rem;
+	color: whitesmoke;
+	background-color: orangered;
+}
+
+/* 返回顶部 */
+.back-to-top {
+	background-image: url("https://cdn.jsdelivr.net/gh/cetr/cdn@master/blog/img/space-to-top.png");
+	width: 62px;
+	height: 88px;
+	position: fixed;
+	bottom: 3.125rem;
+	right: 3.125rem;
+}
+
+.back-to-top:hover {
+	animation: to-top-fly .4s steps(1) infinite;
+}
+
+@keyframes to-top-fly {
+	0% {
+		background-position-x: -142.5px;
+	}
+
+	16.5% {
+		background-position-x: -284.5px;
+	}
+
+	33% {
+		background-position-x: -429.5px;
+	}
+
+	49.5% {
+		background-position-x: -570.5px;
+	}
+
+	66% {
+		background-position-x: -714.5px;
+	}
+
+	82.5% {
+		background-position-x: -856.5px;
+	}
+
+	100% {
+		background-position-x: 0;
+	}
+}
+
+/* 最底部 */
+.foot {
+	clear: both;
+	width: 100%;
+	text-align: center;
+	font-size: 1rem;
+	color: whitesmoke;
+	margin-top: 2rem;
+	padding-top: 10px;
+	box-sizing: border-box;
+	background-color: rgba(0,0,0,.53);
+}
+
+.foot p {
+	height: 30px;
+}
+
+.foot a {
+	color: aquamarine;
+	transition: all 0.3s;
+}
+
+.foot a:hover {
+	color: indianred;
+}
+

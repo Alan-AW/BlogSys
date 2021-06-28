@@ -1,0 +1,133 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 楷体;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* 文章展示 */
+.article_show {
+    position: relative;
+    top: 0;
+    width: 100%;
+    margin-top: 1rem;
+    border-bottom: 2px solid lightgreen;
+    border-top-left-radius: 77.5px;
+    border-bottom-left-radius: 77.5px;
+	box-sizing: content-box;
+    background-color: rgba(245,245,245,.70);
+    box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.6); /* 边框阴影效果 */
+    transition: all 0.3s;
+}
+
+.article_show:hover {
+    top: -10px;
+    box-shadow: 5px 10px 15px rgba(92, 172, 238, 0.6);
+}
+
+/* 文章标题图 */
+.title-img {
+    width: 155px;
+    height: 155px;
+    border-radius: 50%;
+    float: left;
+    line-height: 160px;
+    background-color: rgba(0,0,0,0);
+    border: 0.3125rem dotted rgba(245, 245, 245, .53);
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.3); /* 边框阴影效果 */
+    transition: all 0.3s;
+}
+
+.title-img:hover {
+    box-shadow: 5px 10px 10px rgba(92, 172, 238, 0.6); /* 边框阴影效果 */
+}
+
+/* 图片设置 */
+#big_avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* 文章栏目 + 文章标签 */
+.cat-tag {
+    width: 50%;
+	height: 1.25rem;
+    line-height: 1.25rem;
+	font-size: 18px;
+    margin-bottom: 5px;
+	margin-right: 0.625rem;
+    margin-left: 170px;
+}
+
+.cat {
+    color: yellow;
+    border-radius: 3px;
+    background-color: deepskyblue;
+}
+
+.tag {
+    color: deepskyblue;
+    border-radius: 3px;
+    background-color: yellow;
+}
+
+/* 文章标题 */
+.article_show h3 {
+    margin-left: 170px;
+}
+
+.article_show h3 a{
+    font-size: 1.5rem;
+    color: black;
+}
+
+.article_show h3 a:hover {
+    border-bottom: 1px solid deepskyblue;
+}
+
+/* 文章描述 */
+.desc {
+    margin-top: 5px;
+    margin-left: 170px;
+    color: black;
+    height: 80px;
+    font-size: 1.25rem;
+	line-height: 1.25rem;
+	text-overflow: ellipsis;
+}
+
+.desc p {
+	height: 100%;
+	overflow: hidden;
+	text-overflow: clip ellipsis;
+}
+
+/* 注脚 */
+.zz {
+    margin-top: 0;
+    margin-bottom: 10px;
+    margin-left: 170px;
+}
+
+.zz a {
+    color: deepskyblue;
+}
+
+.up_count {
+    color: green;
+}
+
+.down_count {
+    color: red;
+}
+
+.date {
+    color: grey;
+}
+
+

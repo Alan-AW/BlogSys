@@ -1,0 +1,35 @@
+{% extends 'users/CenterBase.html' %}
+{% load static %}
+
+{% block title %}
+    <link rel="stylesheet" href="{% static 'css/add_msg.css' %}">
+{% endblock %}
+
+{% block main %}
+    <div class="add_msg_form">
+        <div class="form">
+            {% csrf_token %}
+            <p class="suffix">
+                <span id="show_suffix">我&nbsp;的&nbsp;博&nbsp;客:</span>
+                <input type="text" value="{{ user }}" disabled>
+                <span id="edit_title" style="color: red;"></span>
+            </p>
+
+            <p class="title">
+                <span id="show_title">博&nbsp;客&nbsp;标&nbsp;题:</span>
+                <input type="text" name="title" class="edit_title" onkeyup="this.value=this.value.replace(/[ ]/g,'')"
+                       value="{{ title }}" placeholder="个人站点标题">
+                <span id="title_error" style="color: red;"></span>
+            </p>
+
+            <p class="theme">
+                <span id="show_theme">博&nbsp;客&nbsp;主&nbsp;题:</span>
+                <input type="text" name="theme" class="edit_theme" onkeyup="this.value=this.value.replace(/[ ]/g,'')"
+                       value="{{ theme }}" placeholder="设置主题样式">
+                <span id="theme_error" style="color: red"></span>
+            </p>
+            <input type="button" class="sub_massage" value="提交">
+        </div>
+    </div>
+    <script src="{% static 'js/add_blog.js' %}"></script>
+{% endblock %}

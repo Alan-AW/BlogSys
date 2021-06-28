@@ -1,0 +1,308 @@
+@charset "utf-8";
+* {
+	margin: 0;
+	padding: 0;
+	font-family: 楷体;
+}
+
+body,
+html {
+	width: 100%;
+	height: 100%;
+	background: url(/static/img/bg_img/hope.JPG) fixed no-repeat center center;
+	background-size: cover;
+	overflow: hidden;
+}
+
+li {
+	list-style: none
+}
+
+a {
+	text-decoration: none;
+}
+
+/* navgation 系统导航开始 */
+#navgation {
+	width: 99.9%;
+	height: 3.125rem;
+	overflow: hidden;
+	border: 1px solid rgba(0, 0, 0, .1);
+	box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, .3);
+	margin-bottom: 10px;
+}
+
+.navigation::before {
+	content: '';
+	width: 100%;
+	height: 3.125rem;
+	filter: blur(0.35rem);
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: -1;
+}
+
+#navgation #nav {
+	width: 49.5rem;
+	height: 3.125rem;
+	margin: 0 auto;
+}
+
+#navgation #nav li {
+	display: block;
+	width: 8.25rem;
+	height: 3.125rem;
+	line-height: 3.125rem;
+	text-align: center;
+	float: left;
+	font-size: 1.5rem;
+}
+
+#navgation #nav li a {
+	display: block;
+	width: 100%;
+	height: 100%;
+	color: whitesmoke;
+	line-height: 3.125rem;
+	text-align: center;
+	transition: all 0.3s;
+}
+
+#navgation #nav li a:hover {
+	font-size: 1.9rem;
+	color: lightcoral;
+}
+
+#navgation #nav li img {
+	float: left;
+	width: 1.875rem;
+	height: 1.875rem;
+	border-radius: 50%;
+	object-fit: cover;
+	margin-top: 0.55rem;
+}
+
+/* nav 左侧导航开始 */
+.nav {
+	float: left;
+	width: 12%;
+	height: 80%;
+	background: url(/static/img/bg_img/message1.webp) no-repeat center bottom;
+	transition: all .3s;
+	z-index: 0;
+	background-color: rgba(245,217,171,.53);
+}
+
+.nav a {
+	display: block;
+	overflow: hidden;
+	padding-left: 20px;
+	line-height: 46px;
+	max-height: 46px;
+	color: wheat;
+	transition: all .3s;
+}
+
+.nav a span {
+	margin-left: 30px;
+}
+
+.nav-item {
+	position: relative;
+}
+
+.nav-item.nav-show {
+	border-bottom: none;
+}
+
+.nav-item ul {
+	display: none;
+	background: rgba(0, 0, 0, .1);
+}
+
+.nav-item.nav-show ul {
+	display: block;
+}
+
+.nav-item>a:before {
+	content: "";
+	position: absolute;
+	left: 0;
+	width: 2px;
+	height: 46px;
+	background: #34A0CE;
+	opacity: 0;
+	transition: all .3s;
+}
+
+.nav .nav-icon {
+	font-size: 20px;
+	position: absolute;
+	margin-left: -1px;
+}
+
+/* 此处修改导航图标 可自定义iconfont 替换*/
+.icon_1::after {
+	content: "\e62b";
+}
+
+.icon_2::after {
+	content: "\e669";
+}
+
+.icon_3::after {
+	content: "\e61d";
+}
+/*---------------------*/
+
+.nav-more {
+	float: right;
+	margin-right: 20px;
+	font-size: 12px;
+	transition: transform .3s;
+}
+
+/* 此处为导航右侧箭头 如果自定义iconfont 也需要替换*/
+.nav-more::after {
+	content: "\e621";
+}
+/*---------------------*/
+
+.nav-show .nav-more {
+	transform: rotate(90deg);
+}
+
+.nav-show,
+.nav-item>a:hover {
+	color: #FFF;
+	background: rgba(0, 0, 0, .1);
+}
+
+.nav-show>a:before,
+.nav-item>a:hover:before {
+	opacity: 1;
+}
+
+.nav-item li:hover a {
+	color: #FFF;
+	background: rgba(0, 0, 0, .1);
+}
+
+/* nav-mini */
+.nav-mini.nav {
+	width: 60px;
+}
+
+.nav-mini.nav .nav-icon {
+	/* margin-left:-2px; */
+}
+
+.nav-mini.nav .nav-item>a span {
+	display: none;
+}
+
+.nav-mini.nav .nav-more {
+	margin-right: -20px;
+}
+
+.nav-mini.nav .nav-item ul {
+	position: absolute;
+	top: 0;
+	left: 60px;
+	width: 180px;
+	z-index: 99;
+	background-color: rgba(245,217,171,.53);
+	overflow: hidden;
+}
+
+.nav-mini.nav .nav-item:hover {
+	background: rgba(255, 255, 255, .1);
+}
+
+.nav-mini.nav .nav-item:hover .nav-item a {
+	color: #FFF;
+}
+
+.nav-mini.nav .nav-item:hover a:before {
+	opacity: 1;
+}
+
+.nav-mini.nav .nav-item:hover ul {
+	display: block;
+}
+/* 左侧导航结束 */
+
+/* 继承块开始 */
+.show_box {
+	float: right;
+	position: relative;
+	left: 0;
+	width: 88%;
+}
+
+/* 头部 */
+.header {
+	width: 90%;
+	margin: 0 auto;
+	border-radius: 0.75rem;
+	padding: 0.625rem;
+	box-sizing: border-box;
+	/*background-color: rgba(195,179,155, .53);*/
+	background-color: rgba(195,179,155, 0);
+}
+
+.tips {
+	text-align: center;
+	font-size: 1.625rem;
+	color: indianred;
+}
+
+.edit p {
+	color: lightcyan;
+	font-size: 22px;
+}
+
+/* 签名，格言，textarea */
+.colorful {
+	text-align: left;
+	background: -webkit-linear-gradient(left, deepskyblue, #FFD700 25%, deepskyblue 50%, #FFD700 75%, deepskyblue);
+	color: transparent;
+	-webkit-background-clip: text;
+	background-size: 200% 100%;
+	animation: masked-animation 3s infinite linear;
+}
+
+@-webkit-keyframes masked-animation {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: -100% 0;
+    }
+}
+
+/* 底部 */
+.footer {
+	clear: both;
+	width: 100%;
+	padding: 20px 0;
+	box-sizing: border-box;
+	background-color: rgba(245,217,171,.3);
+}
+
+.footer p {
+	text-align: center;
+	margin-top: 0.625rem;
+}
+
+.footer a {
+	color: lightcoral;
+	transition: all 0.3s;
+}
+
+.footer a:hover {
+	color: deeppink;
+}

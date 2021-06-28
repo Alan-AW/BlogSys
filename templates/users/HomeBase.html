@@ -1,0 +1,141 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Mr'Xu">
+    <meta name="Description" content="‘那可是家大公司’">
+    <meta name="keywords" content="‘那可是家大公司’,博客，微博，空间，我的博客，登录，注册">
+    <meta name="website" content="http://127.0.0.1:8001/">
+    <link rel="shortcut icon" href="{% static 'favicon/风车.svg' %}"/>
+    <title id="title"></title>
+    {% block title %}
+        <!-- 子页面title -->
+    {% endblock %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/HomeBase.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/artic_show.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://eqcn.ajz.miesnfu.com/wp-content/plugins/wp-3d-pony/live2dw/lib/L2Dwidget.min.js"></script>
+</head>
+<body>
+<!-- 顶部 -->
+<div id="head">
+    <!-- 已登录导航 -->
+    {% if request.user.is_authenticated %}
+        <div id="navgation">
+            <ul id="nav">
+                <li><a href="{% url 'blog:home' %}"><img
+                        src="{% static 'img/icon/home.png' %}">首页</a>
+                </li>
+                <li><a href="{% url 'blog:home' %}"><img
+                        src="{% static 'img/icon/python.jfif' %}">Python</a>
+                </li>
+                <li><a href="{% url 'blog:leave_msg' %}"><img
+                        src="{% static 'img/nav/lyb.png' %}">留言板</a>
+                </li>
+                <li><a href="{% url 'blog:about' %}"><img
+                        src="{% static 'img/nav/about.jpg' %}">关于我</a></li>
+                <li><a href="{% url 'users:center_welcome' %}"><img
+                        src="{% static 'img/nav/new-setting.jpg' %}">{{ user.username }}
+                </a>
+                </li>
+                <li class="user_msg"><a href="{% url 'users:logout' %}"><img
+                        src="{% static 'img/nav/logout.png' %}">注销</a></li>
+            </ul>
+        </div>
+        <!-- 未登录导航 -->
+    {% else %}
+        <div id="navgation">
+            <ul id="nav">
+                <li><a href="{% url 'blog:home' %}"><img
+                        src="{% static 'img/icon/home.png' %}">首页</a>
+                </li>
+                <li><a href=""><img
+                        src="{% static 'img/icon/python.jfif' %}">Python</a>
+                </li>
+                <li><a href="{% url 'blog:leave_msg' %}"><img
+                        src="{% static 'img/nav/lyb.png' %}">留言板</a>
+                </li>
+                <li><a href="{% url 'blog:about' %}"><img
+                        src="{% static 'img/nav/about.jpg' %}">关于我</a></li>
+                <li><a href="{% url 'users:login' %}"><img
+                        src="{% static 'img/nav/qq.jpg' %}">登录</a></li>
+                <li><a href="{% url 'users:register' %}"><img
+                        src="{% static 'img/nav/register.jpg' %}">注册</a></li>
+            </ul>
+        </div>
+    {% endif %}
+    <div class="a"></div>
+    <h1>君の名は</h1>
+    <p id="comeon" style="font-family: Ink Free">Make yourself a better person, You are the best, May the force be with
+        you!</p>
+    <div class="anther">
+        <!-- 头像 -->
+        <div id="avatar">
+            <img src="{% static 'img/nav/pyy.jpg' %}">
+        </div>
+        <!-- 你说，后来 -->
+        <div id="say">
+            <span id="one_f" style="color: lightgrey">你说,</span><span class="one"></span><span class="two"></span><br>
+            <br>
+            <span id="two_f" style="color: lightgrey">后来,</span><span class="thr"></span><span class="fou"></span>
+        </div>
+    </div>
+</div>
+
+<!-- 左边寄语 -->
+<div class="left">
+    <p class="left_show"></p>
+</div>
+
+<!-- 文章块 -->
+<div class="center">
+    {% block main %}
+
+    {% endblock %}
+</div>
+
+<!-- 右边推荐 -->
+<div class="right">
+    {% block right %}
+
+    {% endblock %}
+</div>
+
+<!-- 分页按钮 -->
+{% block page %}
+
+{% endblock %}
+
+<!-- 底部 -->
+<div class="foot">
+    <p>一起<a href="{% url 'blog:yktt' %}">去看樱花呀~</a></p>
+    <p>“我们努力的意义就在于遇到自己喜欢的东西就把TA留在身边，而不是成为多年后难以启齿的遗憾~”</p>
+    <p>不妨勇敢一些，放手一搏！反正我们都不能活着离开这个世界！</p>
+    {#    <div id="ct">#}
+    {#        <div class="msg" id="lef">#}
+    {#            <span>微信</span><br>#}
+    {#            <img src="{% static 'img/wecat.PNG' %}" style="object-fit: inherit;">#}
+    {#        </div>#}
+    {##}
+    {#        <div class="msg" id="cent">#}
+    {#            <br>#}
+    {#            <p>联系我:</p><br>#}
+    {#            <p>电话:138····5438</p><br>#}
+    {#            <p>邮箱:xcdh560@foxmail.com</p>#}
+    {#        </div>#}
+    {#        <div class="msg" id="rig">#}
+    {#            <span>QQ</span><br>#}
+    {#            <img src="{% static 'img/QQ.PNG' %}" style="object-fit: inherit;">#}
+    {#        </div>#}
+    {#    </div>#}
+</div>
+<!-- 返回顶部 -->
+<div class="back-to-top" id="back-top"></div>
+</body>
+<script src="{% static 'js/HomeBase.js' %}"></script>
+
+</html>

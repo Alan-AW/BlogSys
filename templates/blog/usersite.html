@@ -1,0 +1,87 @@
+{% extends 'users/HomeBase.html' %}
+{% load static %}
+{% load my_tags %}
+{% block title %}
+    <link rel="stylesheet" href="{% static 'css/usersite.css' %}">
+{% endblock %}
+
+{% block main %}
+    <!-- 谁的站点 -->
+    {% if blog %}
+        <span class="user-site">{{ blog.title }}:个人博客</span>
+    {% else %}
+        <span class="user-site">{{ user.nick_name }}:个人博客</span>
+    {% endif %}
+
+    <!-- 主体展示所有文章 -->
+    {% if article_list %}
+
+        <!-- 中间主体 -->
+        {% for artic in article_list %}
+            <div class="article_show">
+
+                <!-- 标题图 -->
+                {% if artic.user.avatar %}
+                    <div class="title-img">
+                        <a href="/{{ artic.user.username }}"><img src="media/{{ artic.user.avatar }}"
+                                        id="big_avatar" alt="头像加载失败"></a>
+                    </div>
+                {% else %}
+                    <div class="title-img">
+                        <a href="/{{ artic.user.username }}"><img src="{% static 'img/bg_img/batterfly.jpg' %}"
+                                        id="big_avatar" alt="头像加载失败"></a>
+                    </div>
+                {% endif %}
+
+                <!-- 分类+标签 -->
+                <div class="cat-tag">
+                    <a href="" class="cat">{{ artic.tags }}</a>
+                    <a href="" class="tag">{{ artic.homeCategory }}</a>
+                </div>
+
+                <!-- 标题 -->
+                <h3><a href="/{{ username }}/articles/{{ artic.pk }}" id="article-title">{{ artic.title }}</a></h3>
+
+                <!-- 摘要 -->
+                <div class="desc">
+                    <p>
+                        {{ artic.desc }}
+                    </p>
+                </div>
+
+                <!-- 注脚 -->
+                <p class="zz">
+                    <!-- 作者、查看、评论、时间 -->
+                    {% if artic.user.nick_name %}
+                        <span><a href="">{{ artic.user.nick_name }}</a></span>
+                    {% else %}
+                        <span><a href="">{{ artic.user.username }}</a></span>
+                    {% endif %}
+                    <span class="up_count">&nbsp;赞：{{ artic.up_count }}&nbsp;&nbsp;</span>
+                    <span class="down_count">踩：{{ artic.down_count }}&nbsp;&nbsp;</span>
+                    <span class="up_count">评论：{{ artic.comment_count }}&nbsp;&nbsp;</span>
+                    <span class="date">{{ artic.create_time|date:'Y-m-d H:i' }}</span>
+                </p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="center-none">
+            <p style="color: red;font-size: 30px;margin: 50px auto;text-align: center">还没有发表过文章哦~</p>
+        </div>
+    {% endif %}
+{% endblock %}
+
+<!-- 右侧展示 -->
+{% block right %}
+    {% get_classification_style username %}
+{% endblock %}
+
+<!-- 分页按钮 -->
+{% block page %}
+    {% if page_count %}
+        <div class="page">
+            {% for page in page_count %}
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}

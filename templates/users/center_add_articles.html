@@ -1,0 +1,11 @@
+{% extends 'users/CenterArticlesReforter.html' %}
+
+{% block articleTitle %}
+    <p class="title_inp"><span id="errorTips">标&nbsp;题：</span><input type="text" id="article_title"
+                                                                     onkeyup="this.value=this.value.replace(/[ ]/g,'')"
+                                                                     placeholder="文章标题"></p>
+{% endblock %}
+
+{% block articleDetail %}
+<textarea id="article_content" cols="30" rows="10"></textarea>
+{% endblock %}

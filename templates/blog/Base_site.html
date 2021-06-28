@@ -1,0 +1,37 @@
+{% load static %}
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="author" content="Mr'Xu">
+    <meta name="Description" content="‘那可是家大公司’">
+    <meta name="keywords" content="‘那可是家大公司’,博客，微博，空间，我的博客，登录，注册">
+    <meta name="website" content="http://127.0.0.1:8008/">
+    <link rel="shortcut icon" href="{% static 'favicon/风车.svg' %}"/>
+    <link rel="stylesheet" href="{% static 'css/base_site.css' %}">
+    {% block tile %}
+        <!-- 子页面标题 -->
+    {% endblock %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="http://libs.baidu.com/html5shiv/3.7/html5shiv.min.js"></script>
+</head>
+<body>
+<section class="canvas-wrap">
+    <div id="canvas" class="gradient"></div>
+</section>
+
+{% block main %}
+    <!-- 子页面主体 -->
+{% endblock %}
+
+<script src="http://cdn.bootcss.com/three.js/r68/three.min.js"></script>
+<script src="http://www.jq22.com/jquery/2.1.1/jquery.min.js"></script>
+<script src="{% static 'js/Canvas3D/js/projector.js' %}"></script>
+<script src="{% static 'js/Canvas3D/js/canvas-renderer.js' %}"></script>
+<script src="{% static 'js/Canvas3D/js/3d-lines-animation.js' %}"></script>
+<script src="{% static 'js/Canvas3D/js/color.js' %}"></script>
+<script src="{% static 'js/HomeBase.js' %}"></script>
+</body>
+</html>

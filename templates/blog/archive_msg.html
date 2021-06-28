@@ -1,0 +1,30 @@
+<h4>{{ username }}</h4>
+<p>用户名：{{ username }}</p>
+{% if user_nick_name %}
+    <p><span>昵&nbsp;&nbsp;称：</span>{{ user_nick_name }}</p>
+{% else %}
+    <p><span>昵&nbsp;&nbsp;称：</span>--</p>
+{% endif %}
+<p><span>邮&nbsp;&nbsp;箱：</span>{{ user_email }}</p>
+<p><span>签&nbsp;&nbsp;名：</span>{{ user_signature }}</p>
+<hr style="margin: 3px auto;width: 80%;">
+
+<!-- 标签 -->
+<h4>标签</h4>
+{% for tag in tag_list %}
+    <p><a href="/{{ username }}/tag/{{ tag.0 }}">{{ tag.0 }}({{ tag.1 }})</a></p>
+{% endfor %}
+<hr style="margin: 3px auto;width: 80%;">
+
+<!-- 分类 -->
+<h4>分类</h4>
+{% for cate in cate_list %}
+    <p><a href="/{{ username }}/cate/{{ cate.0 }}">{{ cate.0 }}({{ cate.1 }})</a></p>
+{% endfor %}
+<hr style="margin: 3px auto;width: 80%;">
+
+<!--  日期归档 -->
+<h4>随笔归档</h4>
+{% for date in date_list %}
+    <p><a href="/{{ username }}/date/{{ date.0 }}">{{ date.0 }}({{ date.1 }})</a></p>
+{% endfor %}

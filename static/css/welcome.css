@@ -1,0 +1,121 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 楷体;
+}
+
+html,
+body {
+    background: url(/static/img/bg_img/7.jfif) fixed center center no-repeat;
+    overflow: hidden;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    transition: all 0.5s;
+    z-index: -1000;
+}
+
+a {
+    text-decoration: none;
+}
+
+/*视频背景*/
+video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    /*height: 100%;*/
+    width: 100%;
+    z-index: 1;
+}
+
+/* poetry */
+.poetry {
+    top: 9rem;
+    left: 65%;
+    z-index: 10;
+}
+
+.poetry span,
+h1 {
+    display: block;
+    text-decoration: none;
+    line-height: 50px;
+    font-size: 35px;
+    text-align: left;
+    background: -webkit-linear-gradient(left, deepskyblue, #FFD700 25%, deepskyblue 50%, #FFD700 75%, deepskyblue);
+    color: transparent;
+    -webkit-background-clip: text;
+    background-size: 200% 100%;
+    animation: masked-animation 3s infinite linear;
+}
+
+@-webkit-keyframes masked-animation {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: -100% 0;
+    }
+}
+
+/* 导航块 */
+.post {
+    z-index: 10;
+    margin-left: 12.5rem;
+    margin-top: 31.25rem;
+}
+
+/* 导航 */
+.nav li {
+    width: 3.125rem;
+    height: 3.125rem;
+    border-radius: 50%;
+    float: left;
+    margin: 0 10px;
+    list-style: none;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.5s;
+    border: 5px solid whitesmoke;
+}
+
+.nav a {
+    display: block;
+    width: 3.125rem;
+    height: 3.125rem;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.nav li:hover {
+    transform: scale(1.2);
+}
+
+
+.nav a img {
+    object-fit: cover;
+    width: 50px;
+    height: 50px;
+}
+
+/* 播放按钮 */
+.play {
+    position: absolute;
+    top: 40%;
+    left: 48%;
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50%;
+    background: url(/static/img/tools-img/play-buttom-hover.jfif) no-repeat;
+    background-size: cover;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.play:hover {
+    background: url(/static/img/tools-img/play-bottom.jfif) no-repeat;
+    background-size: cover;
+}

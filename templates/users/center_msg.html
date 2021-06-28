@@ -1,0 +1,139 @@
+{% extends 'users/CenterBase.html' %}
+{% load static %}
+{% block title %}
+    <link rel="stylesheet" href="https://s2.pstatp.com/cdn/expire-1-M/font-awesome/5.1.1/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/center_msg.css' %}"/>
+{% endblock %}
+{% block main %}
+    <!-- 信息展示 -->
+    <div class="content">
+        <!-- 左侧个人信息 -->
+        {% csrf_token %}
+        <div class="left">
+            <p class="about_user">我的信息</p>
+            <label for="avatar-change">
+                {% if user.avatar %}
+                    <div class="avatar">
+                        <img src="media/{{ avatar }}" id="avatar" alt="头像加载失败" title="你的靓照">
+                    </div>
+                {% else %}
+                    <div class="avatar">
+                        <img src="{% static 'img/bg_img/batterfly.jpg' %}" id="avatar" alt="头像加载失败" title="你的靓照">
+                    </div>
+                {% endif %}
+            </label>
+            <input type="file" name="avatar" id="avatar-change" value="" hidden="hidden"/>
+            <!-- 播放器 -->
+            <div class="container">
+                <div id="glow" class="glow disable-animation">
+                    <div id="player">
+                        <span class="text">That ❤ Girl</span>
+                        <br>
+                        <span id="songName" class="text">Coding and Stuff</span>
+                        <br>
+                        <div class="playback_controls">
+                            <button onclick="skip('prev')">
+                                <i class="fa fa-fast-backward"></i>
+                            </button>
+                            <button onclick="playpause()">
+                                <i class="fa fa-play"></i><i class="fa fa-pause"></i>
+                            </button>
+                            <button onclick="stop()">
+                                <i class="fa fa-stop"></i>
+                            </button>
+                            <button onclick="skip('next')"><i class="fa fa-fast-forward"></i></button>
+                        </div>
+                        <br>
+                        <div id="seekbar"><input type="range" oninput="setPos(this.value)" id="seek" value="0" max="">
+                        </div>
+                        <br>
+                        <div class="volume_controls">
+                            <button onclick="mute()">
+                                <i id="mute" class="fa fa-volume-up"></i>
+                            </button>
+                            <input type="range" id="volume" oninput="setVolume(this.value)" min="0" max="1"
+                                   step="0.01" value="1">
+                        </div>
+                    </div>
+
+                    <div id="playlist" class="hide">
+                        <span class="text">Playlist</span>
+                        <div class="list-container">
+
+                            <div id="list" class="scrollbar">
+                                <div class="list-item">
+                                    <div class="wrap-text">
+                                        <span>https://www.bensound.com/bensound-music/bensound-summer.mp3</span>
+                                    </div>
+                                    <button onclick="removeList(this)">×</button>
+                                </div>
+                            </div>
+                            <div class="add-list">
+                                <input id="sourceUrl" type="text" placeholder="Enter audio url"/>
+                                <button onclick="addList()">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="playlist-btn">
+                        <button onclick="togglePlaylist()">
+                            <i id="playlist-btn" class="fa fa-list"></i>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+            <!-- 注册信息 -->
+            <div class="register_msg">
+                <p><span style="color: indianred;">用户名:&nbsp;</span><span
+                        style="color: lightslategray;">{{ user.username }}</span>
+                    <span style="color: red;">(不可修改)</span><span>
+                <a href="{% url 'users:forget_pwd' %}">改密码</a></span></p>
+                <p style="color: whitesmoke;"><span style="color: greenyellow;"> 昵&nbsp;&nbsp;称:&nbsp;</span>
+                    <span id="nickname">{{ user.nick_name }}</span><span>
+                <input type="button" id="edit_nick_name" class="editbutton" onclick="submit('nick_name')"
+                       value="修改"/></span>
+                </p>
+                <p style="color: whitesmoke"><span style="color: skyblue;">邮&nbsp;&nbsp;箱:&nbsp;</span>
+                    <span id="email">{{ user.email }}</span><span>
+                <input type="button" id="edit_email" class="editbutton" onclick="submit('email')" value="修改"/></span>
+                </p>
+                <p style="color: whitesmoke"><span style="color: mediumspringgreen;">电&nbsp;&nbsp;话:&nbsp;</span>
+                    <span id="tel">{{ user.tel }}</span><span>
+                <input type="button" id="edit_tel" class="editbutton" onclick="submit('tel')" value="修改"/></span>
+                </p>
+                <!-- 签名，格言，输入框 -->
+                <div class="goal">
+                    <p class="gxqm colorful">人生目标:</p>
+                    <p class="goal_content"><span class="goal_desc" title="{{ user.goal }}">{{ user.goal }}</span>
+                        <input type="button" onclick="submit('goal')" id="edit_goal" class="editbutton" value="修改"/></p>
+                </div>
+                <div class="signature">
+                    <p class="rsmb colorful">个性签名:</p>
+                    <p class="signature_content"><span class="signature_desc"
+                                                       title="{{ user.signature }}">{{ user.signature }}</span>
+                        <input type="button" onclick="submit('signature')" id="edit_signature" class="editbutton"
+                               value="修改"/></p>
+                </div>
+                <textarea maxlength="50" id="enter_edit_msg" placeholder="✎改个啥呢？o(￣ヘ￣o＃)" name=""
+                          onkeyup="this.value=this.value.replace(/[ ]/g,'')"></textarea>
+                <p style="margin-top: 20px;" class="lyrics">在泼墨山水画里，你从墨色深处被隐去~</p>
+                <p style="margin-top: 20px;" class="lyrics">天青色等烟雨，而我在等你~</p>
+            </div>
+        </div>
+
+        <!-- 右侧文章编辑 -->
+        <div class="right">
+            {% csrf_token %}
+            <p class="all_article">我的文章</p>
+            {% for article in artic_list %}
+                <p class="article" article_id= {{ article.pk }}><a class="article_title_attr"
+                        href="/{{ article.user.username }}/articles/{{ article.pk }}">{{ article.title }}</a>
+                    <input type="button" id="delete_article" class="ed delete" value="删除"/>
+                    <a href="/{{ article.user.username }}/refactor/{{ article.pk }}" id="edit_article">编辑</a>
+                </p>
+            {% endfor %}
+            <p class="page" style="text-align: center;margin-top: 40px;">分页按钮</p>
+        </div>
+    </div>
+    <script type="text/javascript" src="{% static 'js/center_msg.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Mr'Xu">
+    <meta name="Description" content="‘那可是家大公司’开发的很棒的博客网站">
+    <meta name="keywords" content="‘那可是家大公司’,站长">
+    <meta name="website" content="http://127.0.0.1:8008/">
+    <title id="title"></title>
+    <link rel="shortcut icon" href="{% static 'favicon/风车.svg' %}"/>
+    <link rel="stylesheet" href="{% static 'css/about.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+
+<!-- 导肮 -->
+<div class="navigation">
+	<ul class="nav-bar">
+		<li><a href="{% url 'blog:home' %}">首页</a></li>
+		<li><a href="{% url 'blog:leave_msg' %}">留言板</a></li>
+		<li><a href="{% url 'blog:tenyears' %}">一个普通男孩的十年</a></li>
+	</ul>
+</div>
+
+<!-- 头部 -->
+<div class="header">
+	<h1 style="font-family: 'Ink Free'">GO!</h1>
+	<p style="font-family: 'Ink Free'">Make yourself a better person You are the best May the force be with you</p>
+
+	<!-- 放个自己的圆形头像 -->
+	<div id="icon">
+		<img style="width: 100%;object-fit: scale-down;" src="{% static 'img/user-avatar/me.jpg' %}" >
+	</div>
+
+	<!-- 几句话 -->
+	<div id="say">
+		<span>💞</span><br>
+        <span class="life">“知足且上进,温柔而坚定”</span><br>
+
+		<span>💌</span><br>
+        <span class="life">“寒江孤影，江湖故人，相逢何必曾相识”</span>
+
+	</div>
+</div>
+
+
+<!-- 波浪画布 -->
+<div class="canvas-wrap">
+  <canvas id="canvas"></canvas>
+</div>
+
+<!-- 中间主体 -->
+<div class="footer">
+	<!-- 左侧时钟 -->
+	<canvas id="myCanvas">
+	    该浏览器不支持canvas
+	  </canvas>
+    <div class="content">
+        <span style="color: orangered;">- - - - - - - - - - - 诗 - - - - - - - - - - - </span><br>
+        <span>"我是你头顶的云"</span><br>
+        <span>"是你耳畔的风"</span><br>
+        <span>"是你涉过潮来潮去"</span><br>
+        <span>"是你眼中烂漫山花"</span><br>
+        <span>"亦是你行过的万里山河"</span><br>
+        <span>"此刻"</span><br>
+        <span>"我亦在你眼中"</span><br>
+        <span style="color: yellow;">- - - - - - - - - - -  我 - - - - - - - - - - - </span><br>
+        <span>"95后"</span><br>
+        <span>"苗家人"</span><br>
+        <span>"爱编程、爱折腾、爱音乐"</span><br>
+        <span>"也喜欢唱、跳、rap、和篮球"</span><br>
+        <span>"2019年毕业于湖北第二师范学院"</span><br>
+        <span>"实习期以外协的身份进入到武汉一家事业单位"</span><br>
+        <span>"由于适应不了养老般的体制生活"</span><br>
+        <span>"自2020年4月16日开始自学编程"</span><br>
+        <span>"学习方向：python-Web全栈开发、python-爬虫技术、python-人工智能"</span><br>
+        <span>"目前已掌握："</span><br>
+        <span>"css，Javascript，jQuery，Ajax技术，Java基础，python基础，Django框架前后端不分离全栈Web开发"</span><br>
+        <span>"从0到入门、一个人撑起一个小项目，一路走来。"</span><br>
+        <span>"从未放弃"</span><br>
+        <span>"很喜欢一句话："</span><br>
+        <span>"不畏将来"</span><br>
+        <span>"不念过往"</span><br>
+        <span>"知足且上进、温柔而坚定!"</span><br>
+        <span>"我自风情万种、与世无争"</span><br>
+        <span style="color: green;">- - - - - - - - - - -  祝 - - - - - - - - - - - </span><br>
+        <span>"祖国繁荣昌盛、长治久安"</span><br>
+        <span>"大家平安喜乐、幸福美满"</span><br>
+        <pre class="end" style="font-family: 'Ink Free'">That's All</pre>💘
+        <br>
+    </div>
+	<!-- 主体展示 -->
+
+
+	<!-- 底部信息 -->
+	<div class="foot">
+		<div id="ct">
+			<div class="msg" id="lef">
+				<span>微💘信</span><br>
+				<img src="{% static 'img/wecat.PNG' %}" style="object-fit: inherit;">
+			</div>
+
+			<div class="msg" id="cent">
+				<br>
+				<p style="font-size: 18px;font-family: 'Ink Free'">There used to be a sincere love in front of me. I did not cherish it. I regretted it when I lost it. If God could give me another chance, I would definitely say "I love you" to any girl. If a deadline is to be added, I hope it will be 10,000 years</p>
+			</div>
+
+			<div class="msg" id="rig">
+				<span>Q💘Q</span><br>
+				<img src="{% static 'img/QQ.PNG' %}" style="object-fit: inherit;">
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="{% static 'js/about.js' %}"></script>
+</body>
+</html>

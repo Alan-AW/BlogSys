@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Mr'Xu">
+    <meta name="Description" content="‘那可是家大公司’">
+    <meta name="keywords" content="‘那可是家大公司’,博客，微博，空间，我的博客，登录，注册">
+    <meta name="website" content="http://127.0.0.1:8001/">
+    <link rel="shortcut icon" href="{% static 'favicon/风车.svg' %}"/>
+    <title id="title"></title>
+    {% block title %}
+        <!-- 子页面title -->
+    {% endblock %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/SigRegBase.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+{# 动态视频背景 ----> 太过花里胡哨，已经放弃 #}
+{#<video src="../static/img/siginBG.MP4" muted="muted" autoplay="autoplay" loop="loop"></video>  一定要这么设置，才能保证打开页面的时候正常#}
+
+<!-- navgation -->
+<div id="navgation">
+    <ul id="nav">
+        <li><a href="{% url 'blog:home' %}"><img
+                src="{% static 'img/icon/home.png' %}">首页</a>
+        </li>
+        <li><a href="{% url 'blog:home' %}"><img
+                src="{% static 'img/icon/python.jfif' %}">Python</a>
+        </li>
+        <li><a href="{% url 'blog:leave_msg' %}"><img
+                src="{% static 'img/nav/lyb.png' %}">留言板</a>
+        </li>
+        <li><a href="{% url 'blog:about' %}"><img
+                src="{% static 'img/nav/about.jpg' %}">关于我</a></li>
+    </ul>
+</div>
+
+<!-- canvas -->
+<canvas class="cavs" width="1575" height="1337"></canvas>
+
+{% block main %}
+
+{% endblock %}
+</body>
+
+<script src="{% static 'js/SigRegBase.js' %}"></script>
+</html>

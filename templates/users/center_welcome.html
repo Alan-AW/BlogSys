@@ -1,0 +1,19 @@
+{% extends 'users/CenterBase.html' %}
+{% load static %}
+
+{% block title %}
+    <link rel="stylesheet" href="{% static 'css/center_welcome.css' %}">
+{% endblock %}
+
+{% block main %}
+    <!-- 天气显示 -->
+    <div class="weather">
+        <a href="https://www.tianqi.com/enshi/" title="当前：{{ today }}℃&nbsp;{{ weather }}">
+            <p>{{ date }}</p>
+            <p>当前：{{ today }}℃&nbsp;{{ weather }}</p>
+            <p>{{ humidity }}&nbsp;{{ ultraviolet }}&nbsp;&nbsp;{{ air_quality }}&nbsp;&nbsp;{{ PM }}</p>
+        </a>
+    </div>
+
+    <script src="{% static 'js/center_welcome.js' %}"></script>
+{% endblock %}

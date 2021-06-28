@@ -1,0 +1,42 @@
+{% extends 'users/SigRegBase.html' %}
+{% load static %}
+
+{% block title %}
+    <link rel="stylesheet" href="{% static 'css/forget_code.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+{% endblock %}
+
+
+{% block main %}
+    <!--修改表单-->
+    <div class="content">
+        <form novalidate method="post">
+            {% csrf_token %}
+            <h3 style="color: deepskyblue;height: 30px;text-align:center;margin-top: 7px;font-size: 25px">修改密码</h3>
+
+            <div class="input">用户名：<input type="text" id="user" name="user"
+                                          placeholder="注册的用户名"
+                                          onkeyup="this.value=this.value.replace(/[, ]/g,'')"><span></span>
+            </div>
+            <div class="input">手机号：<input type="text" id="tel" name="tel"
+                                          placeholder="注册手机号"
+                                          maxlength="11"
+                                          onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"><span></span>
+            </div>
+            <div class="input">新密码：<input type="password" id="pwd" name="pwd"
+                                          placeholder="输入新密码"
+                                          onkeyup="this.value=this.value.replace(/[, ]/g,'')"><span></span>
+            </div>
+            <div class="input">新密码：<input type="password" id="re_pwd" name="re_tel"
+                                          placeholder="确认密码"
+                                          onkeyup="this.value=this.value.replace(/[, ]/g,'')"><span></span>
+            </div>
+            <div class="but"><input id="send_code" type="button" value="发送验证码"></div>
+            <div class="input" id="tel_code_box"><input id="sms_code" type="text" name="sms_code" placeholder="短信验证码"
+                                                        maxlength="6"
+                                                        onkeyup="this.value=this.value.replace(/[, ]/g,'')"></div>
+            <div class="but"><input id="sub" type="button" value="我要改密码"></div>
+        </form>
+    </div>
+    <script src="{% static 'js/forget_pwd.js' %}"></script>
+{% endblock %}

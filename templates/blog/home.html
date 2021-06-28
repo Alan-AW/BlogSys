@@ -1,0 +1,94 @@
+{% extends 'users/HomeBase.html' %}
+{% load static %}
+{% block tile %}
+    <link rel="stylesheet" href="{% static 'css/artic_show.css' %}">
+{% endblock %}
+
+{% block main %}
+    <!-- 中间主体 -->
+    {% for artic in article_list %}
+        <div class="article_show">
+            <!-- 标题图 -->
+            {% if artic.user.avatar %}
+                <div class="title-img">
+                    <a href="/{{ artic.user.username }}"><img src="media/{{ artic.user.avatar }}"
+                                                              id="big_avatar" alt="头像加载失败"></a>
+                </div>
+            {% else %}
+                <div class="title-img">
+                    <a href="/{{ artic.user.username }}"><img src="{% static 'img/bg_img/batterfly.jpg' %}"
+                                                              id="big_avatar" alt="头像加载失败"></a>
+                </div>
+            {% endif %}
+
+            <!-- 分类+标签 -->
+            <div class="cat-tag">
+                <a class="cat">文章分类</a>
+                <a href="/home/cate/{{ artic.homeCategory }}" class="tag">{{ artic.homeCategory }}</a>
+            </div>
+
+            <!-- 标题 -->
+            <h3><a href="/{{ artic.user.username }}/articles/{{ artic.pk }}" id="article-title">{{ artic.title }}</a></h3>
+
+            <!-- 摘要 -->
+            <div class="desc">
+                <p>
+                    【摘要】&nbsp;{{ artic.desc }}
+                </p>
+            </div>
+
+            <!-- 注脚 -->
+            <p class="zz">
+                <!-- 作者、查看、评论、时间 -->
+                {% if artic.user.nick_name %}
+                    <span><a href="/{{ artic.user.username }}">{{ artic.user.nick_name }}</a></span>
+                {% else %}
+                    <span><a href="/{{ artic.user.username }}">{{ artic.user.username }}</a></span>
+                {% endif %}
+                <span class="up_count">&nbsp;赞：{{ artic.up_count }}&nbsp;&nbsp;</span>
+                <span class="down_count">踩：{{ artic.down_count }}&nbsp;&nbsp;</span>
+                <span class="up_count">评论：{{ artic.comment_count }}&nbsp;&nbsp;</span>
+                <span class="date">{{ artic.create_time|date:'Y-m-d H:i' }}</span>
+            </p>
+        </div>
+    {% endfor %}
+{% endblock %}
+
+<!-- 归档 -->
+{% block right %}
+<h3>站内归档</h3>
+    <p style="text-align: center;">恰同学少年</p>
+<hr style="margin: 3px auto;width: 80%;">
+<!-- 标签 -->
+    <h4>标签</h4>
+    {% for tag in tag_list %}
+        <p><a href="/home/tag/{{ tag.0 }}">{{ tag.0 }}({{ tag.1 }})</a></p>
+    {% endfor %}
+    <hr style="margin: 3px auto;width: 80%;">
+
+    <!-- 分类 -->
+    <h4>分类</h4>
+    {% for cate in cate_list %}
+        <p><a href="/home/cate/{{ cate.0 }}">{{ cate.0 }}({{ cate.1 }})</a></p>
+    {% endfor %}
+    <hr style="margin: 3px auto;width: 80%;">
+
+    <!--  日期归档 -->
+    <h4>随笔归档</h4>
+    {% for date in date_list %}
+        <p><a href="/home/date/{{ date.0 }}">{{ date.0 }}({{ date.1 }})</a></p>
+    {% endfor %}
+{% endblock %}
+
+<!-- 分页按钮 -->
+{% block page %}
+{% if page_count %}
+        <div class="page">
+            {% for page in page_count %}
+
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}
+
+<!-- 广告 -->

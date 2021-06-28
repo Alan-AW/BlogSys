@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="author" content="Mr'Xu">
+		<meta name="Description" content="‘那可是家大公司’">
+		<meta name="keywords" content="‘那可是家大公司’,博客，微博，空间，我的博客，登录，注册">
+		<meta name="website" content="http://127.0.0.1:8008/">
+		<title id="title"></title>
+		<link rel="shortcut icon" href="{% static 'favicon/风车.svg' %}" />
+		<link rel="stylesheet" type="text/css" href="{% static 'css/welcome.css' %}" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	</head>
+	<body>
+		<!-- 视频背景 -->
+		<video src="/static/img/video/TICK-TOCK.mp4" style="display: none" controls="controls" loop="loop"></video>
+		<!-- 获取声音播放权限 -->
+		<iframe allow="autoplay" style="display:none"></iframe>
+		
+		<!-- poetry -->
+		<div title="下一句" class="poetry" style="position: absolute" onclick="RandomPoetry()">
+			<span id="first"></span>
+			<span id="second"></span>
+		</div>
+	
+		<!-- title -->
+		<div class="post" style="position: absolute">
+			<h1 style="font-size: 40px;">W 8 4 U</h1>
+			<p style="color: whitesmoke;">waiting for you</p>
+			<p id="tock" style="color: orangered;font-size: 25px;margin-bottom: 0.625rem;">
+				知足且上进、温柔而坚定
+			</p>
+			
+			<!-- navgation -->
+			<ul class="nav">
+				<li><a href="{% url 'blog:home' %}" title="首页" class="tag-a" id="home"><img
+					src="{% static 'img/icon/home.png' %}"></a></li>
+				<li><a href="https://github.com/xxj521/BlogSys" title="GitHub" class="tag-a" id="git"><img
+					src="{% static 'img/icon/GitHub.jpg' %}"></a></li>
+				<li><a href="" title="study" class="tag-a" id="study"><img 
+					src="{% static 'img/icon/python.jfif' %}"></a></li>
+				<li><a href="{% url 'blog:about' %}" title="about me" class="tag-a" id="about"><img
+					src="{% static 'img/icon/about.jpg' %}" alt=""></a></li>
+			</ul>
+		</div>
+		<div class="play" style="position: absolute"></div>
+	</body>
+	<!-- js -->
+	<script src="{% static 'js/welcome.js' %}"></script>
+</html>
